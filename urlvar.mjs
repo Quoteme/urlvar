@@ -3,7 +3,8 @@
 // @DESCRIPTION : get URL Variables, similar to PHP's $_GET
 export const get = (url=location.href) => Object.fromEntries(
 	location.href
-		.split('?')[1]
-		.split('&')
-		.map(e => e.split('='))
+		.concat('?')			// add extra '?' if URL has no URLvars
+		.split('?')[1]			// everythin after first '?'
+		.split('&')				// array of vars, seperated by '&'
+		.map(e => e.split('=')) // create [key, value] pairs from vars
 	)
